@@ -84,11 +84,14 @@ namespace VaccineCredentialsIssuer
                 },
                 ClaimMappings = new List<ClaimMappings>
                 {
-                    new ClaimMappings{ JsonLdTerm="name", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/name"},
-                    new ClaimMappings{ JsonLdTerm="firstName", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/first_name"},
-                    new ClaimMappings{ JsonLdTerm="licenseType", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/license_type"},
-                    new ClaimMappings{ JsonLdTerm="dateOfBirth", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/date_of_birth"},
-                    new ClaimMappings{ JsonLdTerm="licenseIssuedAt", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/license_issued_at"}
+                    new ClaimMappings{ JsonLdTerm="family_name", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/familyName"},
+                    new ClaimMappings{ JsonLdTerm="given_name", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/givenName"},
+                    new ClaimMappings{ JsonLdTerm="date_of_birth", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/date_of_birth"},
+                    new ClaimMappings{ JsonLdTerm="medicinal_product_code", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/medicinal_product_code"},
+                    new ClaimMappings{ JsonLdTerm="number_of_doses", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/number_of_doses"},
+                    new ClaimMappings{ JsonLdTerm="total_number_of_doses", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/totalNumber_of_doses"},
+                    new ClaimMappings{ JsonLdTerm="vaccination_date", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/vaccination_date"},
+                    new ClaimMappings{ JsonLdTerm="country_of_vaccination", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/country_of_vaccination"}
                 },
                 FederatedProvider = new FederatedProvider
                 {
