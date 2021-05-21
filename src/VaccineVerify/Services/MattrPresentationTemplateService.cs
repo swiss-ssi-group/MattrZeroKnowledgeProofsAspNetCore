@@ -41,7 +41,7 @@ namespace VaccineVerify
                 TemplateId = v1PresentationTemplateResponse.Id,
                 MattrPresentationTemplateReponse = JsonConvert.SerializeObject(v1PresentationTemplateResponse)
             };
-            await _VaccineVerifyDbService.CreateDriverLicensePresentationTemplate(drivingLicensePresentationTemplate);
+            await _VaccineVerifyDbService.CreateVaccinationDataTemplate(drivingLicensePresentationTemplate);
 
             return v1PresentationTemplateResponse.Id;
         }

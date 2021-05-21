@@ -63,7 +63,7 @@ namespace VaccineVerify
                 new AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
 
-            var template = await _VaccineVerifyDbService.GetLastDriverLicensePrsentationTemplate();
+            var template = await _VaccineVerifyDbService.GetLastVaccinationDataPrsentationTemplate();
 
             // Invoke the Presentation Request
             var invokePresentationResponse = await InvokePresentationRequest(
@@ -94,7 +94,7 @@ namespace VaccineVerify
                 Did = JsonConvert.SerializeObject(did),
                 SignAndEncodePresentationRequestBody = jws
             };
-            await _VaccineVerifyDbService.CreateDrivingLicensePresentationVerify(drivingLicensePresentationVerify);
+            await _VaccineVerifyDbService.CreateVaccinationDataPresentationVerify(drivingLicensePresentationVerify);
 
             var qrCodeUrl = $"didcomm://https://{_mattrConfiguration.TenantSubdomain}/?request={jws}";
 

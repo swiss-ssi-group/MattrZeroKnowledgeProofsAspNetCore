@@ -15,7 +15,7 @@ namespace VaccineVerify
             _VaccineVerifyVerifyMattrContext = VaccineVerifyVerifyMattrContext;
         }
 
-        public async Task<(string DidId, string TemplateId)> GetLastDriverLicensePrsentationTemplate()
+        public async Task<(string DidId, string TemplateId)> GetLastVaccinationDataPrsentationTemplate()
         {
             var driverLicenseTemplate = await _VaccineVerifyVerifyMattrContext
                 .VaccinationDataPresentationTemplates
@@ -31,7 +31,7 @@ namespace VaccineVerify
             return (string.Empty, string.Empty);
         }
 
-        public async Task CreateDriverLicensePresentationTemplate(VaccinationDataPresentationTemplate vaccinationDataPresentationTemplate)
+        public async Task CreateVaccinationDataTemplate(VaccinationDataPresentationTemplate vaccinationDataPresentationTemplate)
         {
             _VaccineVerifyVerifyMattrContext.VaccinationDataPresentationTemplates.Add(vaccinationDataPresentationTemplate);
             await _VaccineVerifyVerifyMattrContext.SaveChangesAsync();
@@ -44,7 +44,7 @@ namespace VaccineVerify
                 .AnyAsync(d => d.Challenge == challengeId);
         }
 
-        public async Task CreateDrivingLicensePresentationVerify(VaccinationDataPresentationVerify vaccinationDataPresentationVerify)
+        public async Task CreateVaccinationDataPresentationVerify(VaccinationDataPresentationVerify vaccinationDataPresentationVerify)
         {
             _VaccineVerifyVerifyMattrContext.VaccinationDataPresentationVerifications.Add(vaccinationDataPresentationVerify);
             await _VaccineVerifyVerifyMattrContext.SaveChangesAsync();
