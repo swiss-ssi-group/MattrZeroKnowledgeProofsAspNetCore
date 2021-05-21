@@ -78,13 +78,13 @@
 ### Console
 
 ```
-dotnet ef migrations add ndl_init
+dotnet ef migrations add vaccine_vc_issuer_init
 ```
 
 ### Powershell
 
 ```
-Add-Migration "ndl_init"
+Add-Migration "vaccine_vc_issuer_init"
 ```
 
 ## Running Migrations
