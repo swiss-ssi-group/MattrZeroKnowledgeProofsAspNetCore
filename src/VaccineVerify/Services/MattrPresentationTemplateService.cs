@@ -68,6 +68,12 @@ namespace VaccineVerify
 
             var createPresentationsTemplatesUrl = $"https://{_mattrConfiguration.TenantSubdomain}/v1/presentations/templates";
 
+            var additionalPropertiesCredentialSubject = new Dictionary<string, object>();
+            additionalPropertiesCredentialSubject.Add("credentialSubject", new VaccanationDataCredentialSubject
+            { 
+                Explicit = true
+            });
+
             var additionalPropertiesCredentialQuery = new Dictionary<string, object>();
             additionalPropertiesCredentialQuery.Add("frame", new Frame
             {
@@ -76,12 +82,8 @@ namespace VaccineVerify
                     "https://w3id.org/vc-revocation-list-2020/v1",
                     "https://schema.org"
                 },
-                Type = "VerifiableCredential"
-                // TODO
-                //CredentialSubject = new CredentialSubject2
-                //{
-                //    w
-                //}
+                Type = "VerifiableCredential",
+                AdditionalProperties = additionalPropertiesCredentialSubject
 
             });
             additionalPropertiesCredentialQuery.Add("trustedIssuer", new List<TrustedIssuer2>
@@ -141,5 +143,43 @@ namespace VaccineVerify
 
             throw new Exception("whoops something went wrong");
         }
+    }
+
+    public class VaccanationDataCredentialSubject
+    {
+        [Newtonsoft.Json.JsonProperty("@explicit", Required = Newtonsoft.Json.Required.Always)]
+        public bool Explicit { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("family_name", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public object FamilyName { get; set; } = new object();
+
+        [Newtonsoft.Json.JsonProperty("given_name", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public object GivenName { get; set; } = new object();
+
+        [Newtonsoft.Json.JsonProperty("date_of_birth", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public object DateOfBirth { get; set; } = new object();
+
+        [Newtonsoft.Json.JsonProperty("medicinal_product_code", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public object MedicinalProductCode { get; set; } = new object();
+
+        [Newtonsoft.Json.JsonProperty("number_of_doses", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public object NumberOfDoses { get; set; } = new object();
+
+        [Newtonsoft.Json.JsonProperty("total_number_of_doses", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public object TotalNumberOfDoses { get; set; } = new object();
+
+        [Newtonsoft.Json.JsonProperty("vaccination_date", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public object VaccinationDate { get; set; } = new object();
+
+        [Newtonsoft.Json.JsonProperty("country_of_vaccination", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public object CountryOfVaccination { get; set; } = new object();
     }
 }

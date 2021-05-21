@@ -2362,9 +2362,9 @@ namespace VaccineVerify.MattrOpenApiClient
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Type { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("credentialSubject", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public CredentialSubject2 CredentialSubject { get; set; } = new CredentialSubject2();
+        //[Newtonsoft.Json.JsonProperty("credentialSubject", Required = Newtonsoft.Json.Required.Always)]
+        //[System.ComponentModel.DataAnnotations.Required]
+        //public CredentialSubject2 CredentialSubject { get; set; } = new CredentialSubject2();
     
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
     
