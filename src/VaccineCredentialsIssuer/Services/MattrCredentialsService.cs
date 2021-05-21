@@ -167,6 +167,6 @@ namespace VaccineCredentialsIssuer
         /// If the keyType in options is set to bls12381g2 a DID will be created with 
         /// a BLS key type which supports BBS+ signatures for issuing ZKP-enabled credentials.
         /// </summary>
-        public string keyType { get; set; } = "ed25519";
+        public string keyType { get; set; } = "bls12381g2";
     }
 }

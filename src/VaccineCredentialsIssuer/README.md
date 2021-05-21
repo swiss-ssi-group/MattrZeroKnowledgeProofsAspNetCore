@@ -1,4 +1,4 @@
-# National Driving License 
+# Verifiable credentials ZKP Vaccination Data
 
 creates drving license credentials
 
