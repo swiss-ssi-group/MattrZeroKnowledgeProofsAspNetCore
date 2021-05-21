@@ -75,33 +75,32 @@ namespace VaccineVerify
             });
 
             var additionalPropertiesCredentialQuery = new Dictionary<string, object>();
-            additionalPropertiesCredentialQuery.Add("frame", new Frame
-            {
-                Context = new List<object>{
-                    "https://www.w3.org/2018/credentials/v1",
-                    "https://w3id.org/vc-revocation-list-2020/v1",
-                    "https://schema.org"
-                },
-                Type = "VerifiableCredential",
-                AdditionalProperties = additionalPropertiesCredentialSubject
-
-            });
-            additionalPropertiesCredentialQuery.Add("trustedIssuer", new List<TrustedIssuer2>
-            {
-                new TrustedIssuer2
-                {
-                    Required = true,
-                    Issuer = didId // DID use to create the oidc
-                }
-            });
+            additionalPropertiesCredentialQuery.Add("required", true);
 
             var additionalPropertiesQuery = new Dictionary<string, object>();
             additionalPropertiesQuery.Add("type", "QueryByFrame");
-            additionalPropertiesQuery.Add("credentialQuery", new List<CredentialQuery> {
-                new CredentialQuery
+            additionalPropertiesQuery.Add("credentialQuery", new List<CredentialQuery2> {
+                new CredentialQuery2
                 {
                     Reason = "Please provide your vaccination data",
-                    Required = true,
+                    TrustedIssuer = new List<TrustedIssuer>{
+                        new TrustedIssuer
+                        {
+                            Required = true,
+                            Issuer = didId // DID use to create the oidc
+                        }
+                    },
+                    Frame = new Frame
+                    {
+                        Context = new List<object>{
+                            "https://www.w3.org/2018/credentials/v1",
+                            "https://w3id.org/vc-revocation-list-2020/v1",
+                            "https://schema.org"
+                        },
+                        Type = "VerifiableCredential",
+                        AdditionalProperties = additionalPropertiesCredentialSubject
+
+                    },
                     AdditionalProperties = additionalPropertiesCredentialQuery
                 }
             });
