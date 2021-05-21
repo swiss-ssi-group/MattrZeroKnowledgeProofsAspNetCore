@@ -56,6 +56,19 @@
 }
 ```
 
+```
+"family_name": "",
+"given_name": "",
+"date_of_birth": "",
+// Pfizer/BioNTech Comirnaty EU/1/20/1528 , COVID-19 Vaccine Moderna EU/1/20/1507, Sputnik-V
+"medicinal_product_code": "Pfizer/BioNTech Comirnaty EU/1/20/1528",  
+"number_of_doses": "2",
+"total_number_of_doses": "2",
+"vaccination_date": "2021-05-12",
+"country_of_vaccination": "CH",
+                
+```
+
 ## History
 
 2021-05-09 Updated packages, code clean up, improved random
