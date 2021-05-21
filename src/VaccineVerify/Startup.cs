@@ -28,6 +28,7 @@ namespace VaccineVerify
             services.AddScoped<MattrPresentationTemplateService>();
             services.AddScoped<MattrCredentialVerifyCallbackService>();
             services.AddScoped<VaccineVerifyDbService>();
+            services.AddScoped<MattrCreateDidService>();
 
             services.AddDbContext<VaccineVerifyVerifyMattrContext>(options =>
                 options.UseSqlServer(
