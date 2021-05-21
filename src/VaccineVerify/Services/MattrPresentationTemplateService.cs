@@ -64,41 +64,55 @@ namespace VaccineVerify
         {
             // create presentation, post to presentations templates api
             // https://learn.mattr.global/tutorials/verify/presentation-request-template
+            // https://learn.mattr.global/tutorials/verify/presentation-request-template#create-a-privacy-preserving-presentation-request-template-for-zkp-enabled-credentials
 
             var createPresentationsTemplatesUrl = $"https://{_mattrConfiguration.TenantSubdomain}/v1/presentations/templates";
 
-            var additionalProperties = new Dictionary<string, object>();
-            additionalProperties.Add("type", "QueryByExample");
-            additionalProperties.Add("credentialQuery", new List<CredentialQuery> {
+            var additionalPropertiesCredentialQuery = new Dictionary<string, object>();
+            additionalPropertiesCredentialQuery.Add("frame", new Frame
+            {
+                Context = new List<object>{
+                    "https://www.w3.org/2018/credentials/v1",
+                    "https://w3id.org/vc-revocation-list-2020/v1",
+                    "https://schema.org"
+                },
+                Type = "VerifiableCredential"
+                // TODO
+                //CredentialSubject = new CredentialSubject2
+                //{
+                //    w
+                //}
+
+            });
+            additionalPropertiesCredentialQuery.Add("trustedIssuer", new List<TrustedIssuer2>
+            {
+                new TrustedIssuer2
+                {
+                    Required = true,
+                    Issuer = didId // DID use to create the oidc
+                }
+            });
+
+            var additionalPropertiesQuery = new Dictionary<string, object>();
+            additionalPropertiesQuery.Add("type", "QueryByFrame");
+            additionalPropertiesQuery.Add("credentialQuery", new List<CredentialQuery> {
                 new CredentialQuery
                 {
-                    Reason = "Please provide your driving license",
+                    Reason = "Please provide your vaccination data",
                     Required = true,
-                    Example = new Example
-                    {
-                        Context = new List<object>{ "https://schema.org" },
-                        Type = "VerifiableCredential",
-                        TrustedIssuer = new List<TrustedIssuer2>
-                        {
-                            new TrustedIssuer2
-                            {
-                                Required = true,
-                                Issuer = didId // DID use to create the oidc
-                            }
-                        }
-                    }
+                    AdditionalProperties = additionalPropertiesCredentialQuery
                 }
             });
 
             var payload = new MattrOpenApiClient.V1_CreatePresentationTemplate
             {
                 Domain = _mattrConfiguration.TenantSubdomain,
-                Name = "certificate-presentation",
+                Name = "zkp-certificate-presentation",
                 Query = new List<Query>
                 {
                     new Query
                     {
-                        AdditionalProperties = additionalProperties
+                        AdditionalProperties = additionalPropertiesQuery
                     }
                 }
             };
