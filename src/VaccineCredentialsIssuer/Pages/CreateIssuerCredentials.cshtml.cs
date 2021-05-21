@@ -8,7 +8,7 @@ namespace VaccineCredentialsIssuer.Pages
     public class AdminModel : PageModel
     {
         private readonly MattrCredentialsService _mattrCredentialsService;
-        public bool CreatingDriverLicense { get; set; } = true;
+        public bool CreatingVaccinationData { get; set; } = true;
         public string Callback { get; set; }
 
         [BindProperty]
@@ -30,7 +30,7 @@ namespace VaccineCredentialsIssuer.Pages
             }
 
             Callback = await _mattrCredentialsService.CreateCredentialsAndCallback(IssuerCredential.CredentialName);
-            CreatingDriverLicense = false;
+            CreatingVaccinationData = false;
             return Page();
         }
     }

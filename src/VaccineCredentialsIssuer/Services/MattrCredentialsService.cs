@@ -15,19 +15,19 @@ namespace VaccineCredentialsIssuer
     public class MattrCredentialsService
     {
         private readonly IConfiguration _configuration;
-        private readonly VaccineCredentialsIssuerCredentialsService _driverLicenseService;
+        private readonly VaccineCredentialsIssuerCredentialsService _vaccineCredentialsIssuerCredentialsService;
         private readonly IHttpClientFactory _clientFactory;
         private readonly MattrTokenApiService _mattrTokenApiService;
         private readonly MattrConfiguration _mattrConfiguration;
 
         public MattrCredentialsService(IConfiguration configuration,
-            VaccineCredentialsIssuerCredentialsService driverLicenseService,
+            VaccineCredentialsIssuerCredentialsService vaccineCredentialsIssuerCredentialsService,
             IHttpClientFactory clientFactory,
             IOptions<MattrConfiguration> mattrConfiguration,
             MattrTokenApiService mattrTokenApiService)
         {
             _configuration = configuration;
-            _driverLicenseService = driverLicenseService;
+            _vaccineCredentialsIssuerCredentialsService = vaccineCredentialsIssuerCredentialsService;
             _clientFactory = clientFactory;
             _mattrTokenApiService = mattrTokenApiService;
             _mattrConfiguration = mattrConfiguration.Value;
@@ -36,11 +36,11 @@ namespace VaccineCredentialsIssuer
         public async Task<string> CreateCredentialsAndCallback(string name)
         {
             // create a new one
-            var driverLicenseCredentials = await CreateMattrDidAndCredentialIssuer();
-            driverLicenseCredentials.Name = name;
-            await _driverLicenseService.CreateDriverLicense(driverLicenseCredentials);
+            var vaccinationDataCredentials = await CreateMattrDidAndCredentialIssuer();
+            vaccinationDataCredentials.Name = name;
+            await _vaccineCredentialsIssuerCredentialsService.CreateVaccinationData(vaccinationDataCredentials);
 
-            var callback = $"https://{_mattrConfiguration.TenantSubdomain}/ext/oidc/v1/issuers/{driverLicenseCredentials.OidcIssuerId}/federated/callback";
+            var callback = $"https://{_mattrConfiguration.TenantSubdomain}/ext/oidc/v1/issuers/{vaccinationDataCredentials.OidcIssuerId}/federated/callback";
             return callback;
         }
 

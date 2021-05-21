@@ -63,10 +63,10 @@ namespace VaccineCredentialsIssuer.Pages
                     CountryOfVaccination = countryOfVaccinationClaim.Value
                 };
                 // get per name
-                //var offerUrl = await _vaccineCredentialsIssuerCredentialsService.GetLastDriverLicenseCredentialIssuerUrl("ndlseven");
+                //var offerUrl = await _vaccineCredentialsIssuerCredentialsService.GetLastVaccinationDataCredentialIssuerUrl("ndlseven");
 
                 // get the last one
-                var offerUrl = await _vaccineCredentialsIssuerCredentialsService.GetLastDriverLicenseCredentialIssuerUrl();
+                var offerUrl = await _vaccineCredentialsIssuerCredentialsService.GetLastVaccinationDataCredentialIssuerUrl();
 
                 VaccinationDataMessage = "Add your vaccination data credentials to your wallet";
                 CredentialOfferUrl = offerUrl;
