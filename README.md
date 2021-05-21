@@ -24,7 +24,7 @@
  - Start application using for example http://localhost:5000
  - Start ngrok using **ngrok http http://localhost:5000** (like above)
  - Copy the DID for the OIDC Issuer Credentials from the VaccineCredentialsIssuer UI
- - Create a presentation template in the BoInsurance (Use copied DID)
+ - Create a presentation template in the VaccineVerify (Use copied DID)
  - Verify using the wallet and the application
 
 ## secrets

@@ -1,0 +1,87 @@
+﻿@page
+@model VaccineVerify.Pages.CreateVerifierDisplayQrCodeModel
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <form method="post">
+                <div>
+                    <div class="form-group">
+                        <label class="control-label">Callback base URL (ngrok in debug...)</label>
+                        <input asp-for="CallbackUrlDto.CallbackUrl" class="form-control" />
+                        <span asp-validation-for="CallbackUrlDto.CallbackUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        @if (Model.CreatingVerifier)
+                        {
+                            <input class="form-control"
+                                   type="submit" readonly="@Model.CreatingVerifier"
+                                   value="Create Verification" />
+                        }
+
+                    </div>
+                    <div class="form-group">
+                        @if (!Model.CreatingVerifier)
+                        {
+                            <div class="alert alert-success">
+                                <strong>Ready to verify</strong>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </form>
+            <hr />
+            <p>When the verification is created, you can scan the QR Code to verify</p>
+        </div>
+        <div class="col-sm">
+            <div>
+                <img src="~/ndl_car_01.png" width="200" alt="Driver License">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="qr" id="qrCode"></div>
+            <input asp-for="ChallengeId" hidden/>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+<script src="~/js/qrcode.min.js"></script>
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrCode"),
+    {
+        text: "@Html.Raw(Model.QrCodeUrl)",
+        width: 400,
+        height: 400,
+        correctLevel: QRCode.CorrectLevel.M
+    });
+
+    $(document).ready(() => {
+ 
+    });
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/mattrVerifiedSuccessHub").build();
+
+    connection.on("MattrCallbackSuccess", function (challengeId) {
+        console.log("received verification:" + challengeId);
+        window.location.href = "/VerifiedUser?challengeid=" + challengeId;
+    });
+
+    connection.start().then(function () {
+        //console.log(connection.connectionId);
+        const challengeId = $("#ChallengeId").val();
+        
+        if (challengeId) {
+            console.log(challengeId);
+            // join message
+            connection.invoke("AddChallenge", challengeId, connection.connectionId).catch(function (err) {
+                return console.error(err.toString());
+            });
+        }
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+</script>
+}
