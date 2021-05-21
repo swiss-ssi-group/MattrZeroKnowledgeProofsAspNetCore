@@ -23,7 +23,7 @@
  - Initialize your database
  - Start application using for example http://localhost:5000
  - Start ngrok using **ngrok http http://localhost:5000** (like above)
- - Copy the DID for the OIDC Issuer Credentials from the NationalDrivingLicense UI
+ - Copy the DID for the OIDC Issuer Credentials from the VaccineCredentialsIssuer UI
  - Create a presentation template in the BoInsurance (Use copied DID)
  - Verify using the wallet and the application
 
@@ -81,7 +81,7 @@ Add-Migration "ndl_init"
 ```
 dotnet restore
 
-dotnet ef database update --context NationalDrivingLicenseMattrContext
+dotnet ef database update --context VaccineCredentialsIssuerMattrContext
 ```
 
 ### Powershell

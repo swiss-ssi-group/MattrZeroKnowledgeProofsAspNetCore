@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Json;
 
-namespace NationalDrivingLicense.Services
+namespace VaccineCredentialsIssuer.Services
 {
     public class MattrTokenApiService
     {

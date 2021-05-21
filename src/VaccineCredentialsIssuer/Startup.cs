@@ -5,16 +5,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using NationalDrivingLicense.Services;
+using VaccineCredentialsIssuer.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Threading.Tasks;
-using NationalDrivingLicense.Data;
+using VaccineCredentialsIssuer.Data;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace NationalDrivingLicense
+namespace VaccineCredentialsIssuer
 {
     public class Startup
     {
@@ -32,9 +32,9 @@ namespace NationalDrivingLicense
             services.Configure<MattrConfiguration>(Configuration.GetSection("MattrConfiguration"));
             services.AddScoped<MattrTokenApiService>();
             services.AddScoped<MattrCredentialsService>();
-            services.AddScoped<DriverLicenseCredentialsService>();
+            services.AddScoped<VaccineCredentialsIssuerCredentialsService>();
 
-            services.AddDbContext<NationalDrivingLicenseMattrContext>(options =>
+            services.AddDbContext<VaccinationDataMattrContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 

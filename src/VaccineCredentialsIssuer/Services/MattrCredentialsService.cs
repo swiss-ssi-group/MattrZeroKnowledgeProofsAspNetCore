@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using NationalDrivingLicense.Data;
-using NationalDrivingLicense.MattrOpenApiClient;
-using NationalDrivingLicense.Services;
+using VaccineCredentialsIssuer.Data;
+using VaccineCredentialsIssuer.MattrOpenApiClient;
+using VaccineCredentialsIssuer.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,18 +10,18 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace NationalDrivingLicense
+namespace VaccineCredentialsIssuer
 {
     public class MattrCredentialsService
     {
         private readonly IConfiguration _configuration;
-        private readonly DriverLicenseCredentialsService _driverLicenseService;
+        private readonly VaccineCredentialsIssuerCredentialsService _driverLicenseService;
         private readonly IHttpClientFactory _clientFactory;
         private readonly MattrTokenApiService _mattrTokenApiService;
         private readonly MattrConfiguration _mattrConfiguration;
 
         public MattrCredentialsService(IConfiguration configuration,
-            DriverLicenseCredentialsService driverLicenseService,
+            VaccineCredentialsIssuerCredentialsService driverLicenseService,
             IHttpClientFactory clientFactory,
             IOptions<MattrConfiguration> mattrConfiguration,
             MattrTokenApiService mattrTokenApiService)
@@ -44,7 +44,7 @@ namespace NationalDrivingLicense
             return callback;
         }
 
-        private async Task<DriverLicenseCredentials> CreateMattrDidAndCredentialIssuer()
+        private async Task<VaccinationDataCredentials> CreateMattrDidAndCredentialIssuer()
         {
             HttpClient client = _clientFactory.CreateClient();
             var accessToken = await _mattrTokenApiService.GetApiToken(client, "mattrAccessToken");
@@ -55,7 +55,7 @@ namespace NationalDrivingLicense
             var did = await CreateMattrDid(client);
             var oidcIssuer = await CreateMattrCredentialIssuer(client, did);
 
-            return new DriverLicenseCredentials
+            return new VaccinationDataCredentials
             {
                 Name = "not_named",
                 Did = JsonConvert.SerializeObject(did),
@@ -76,11 +76,11 @@ namespace NationalDrivingLicense
                 Credential = new Credential
                 {
                     IssuerDid = did.Did,
-                    Name = "NationalDrivingLicense",
+                    Name = "VaccineCredentialsIssuer",
                     Context = new List<Uri> {
                          new Uri( "https://schema.org") // Only this is supported
                     },
-                    Type = new List<string> { "nationaldrivinglicense" }
+                    Type = new List<string> { "VaccineCredentialsIssuer" }
                 },
                 ClaimMappings = new List<ClaimMappings>
                 {

@@ -1,4 +1,4 @@
-﻿namespace NationalDrivingLicense.Services
+﻿namespace VaccineCredentialsIssuer.Services
 {
     public class MattrConfiguration
     {

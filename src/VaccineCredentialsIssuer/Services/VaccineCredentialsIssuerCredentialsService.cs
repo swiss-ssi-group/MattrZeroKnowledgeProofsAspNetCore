@@ -1,30 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using NationalDrivingLicense.Data;
-using NationalDrivingLicense.MattrOpenApiClient;
-using NationalDrivingLicense.Services;
+using VaccineCredentialsIssuer.Data;
+using VaccineCredentialsIssuer.MattrOpenApiClient;
+using VaccineCredentialsIssuer.Services;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NationalDrivingLicense
+namespace VaccineCredentialsIssuer
 {
-    public class DriverLicenseCredentialsService
+    public class VaccineCredentialsIssuerCredentialsService
     {
-        private readonly NationalDrivingLicenseMattrContext _nationalDrivingLicenseMattrContext;
+        private readonly VaccinationDataMattrContext _VaccineCredentialsIssuerMattrContext;
         private readonly MattrConfiguration _mattrConfiguration;
 
-        public DriverLicenseCredentialsService(NationalDrivingLicenseMattrContext nationalDrivingLicenseMattrContext,
+        public VaccineCredentialsIssuerCredentialsService(VaccinationDataMattrContext VaccineCredentialsIssuerMattrContext,
             IOptions<MattrConfiguration> mattrConfiguration)
         {
-            _nationalDrivingLicenseMattrContext = nationalDrivingLicenseMattrContext;
+            _VaccineCredentialsIssuerMattrContext = VaccineCredentialsIssuerMattrContext;
             _mattrConfiguration = mattrConfiguration.Value;
         }
 
-        public async Task<(string Callback, string DidId)> GetLastDriverLicenseCredentialIssuer()
+        public async Task<(string Callback, string DidId)> GetLastVaccineCredentialIssuer()
         {
-            var driverLicenseCredentials = await _nationalDrivingLicenseMattrContext
-                .DriverLicenseCredentials
+            var driverLicenseCredentials = await _VaccineCredentialsIssuerMattrContext
+                .VaccinationDataCredentials
                 .OrderBy(u => u.Id)
                 .LastOrDefaultAsync();
 
@@ -40,8 +40,8 @@ namespace NationalDrivingLicense
 
         public async Task<string> GetLastDriverLicenseCredentialIssuerUrl()
         {
-            var driverLicense = await _nationalDrivingLicenseMattrContext
-                .DriverLicenseCredentials
+            var driverLicense = await _VaccineCredentialsIssuerMattrContext
+                .VaccinationDataCredentials
                 .OrderBy(u => u.Id)
                 .LastOrDefaultAsync();
 
@@ -56,8 +56,8 @@ namespace NationalDrivingLicense
 
         public async Task<string> GetDriverLicenseCredentialIssuerUrl(string name)
         {
-            var driverLicense = await _nationalDrivingLicenseMattrContext
-                .DriverLicenseCredentials
+            var driverLicense = await _VaccineCredentialsIssuerMattrContext
+                .VaccinationDataCredentials
                 .FirstOrDefaultAsync(dl => dl.Name == name);
 
             if (driverLicense != null)
@@ -69,10 +69,10 @@ namespace NationalDrivingLicense
             return string.Empty;
         }
 
-        public async Task CreateDriverLicense(DriverLicenseCredentials driverLicense)
+        public async Task CreateDriverLicense(VaccinationDataCredentials driverLicense)
         {
-            _nationalDrivingLicenseMattrContext.DriverLicenseCredentials.Add(driverLicense);
-            await _nationalDrivingLicenseMattrContext.SaveChangesAsync();
+            _VaccineCredentialsIssuerMattrContext.VaccinationDataCredentials.Add(driverLicense);
+            await _VaccineCredentialsIssuerMattrContext.SaveChangesAsync();
         }
     }
 }

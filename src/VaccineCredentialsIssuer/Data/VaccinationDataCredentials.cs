@@ -1,10 +1,9 @@
-﻿using NationalDrivingLicense.MattrOpenApiClient;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace NationalDrivingLicense.Data
+namespace VaccineCredentialsIssuer.Data
 {
-    public class DriverLicenseCredentials
+    public class VaccinationDataCredentials
     {
         [Key]
         public int Id { get; set; }

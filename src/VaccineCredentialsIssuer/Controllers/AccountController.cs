@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace NationalDrivingLicense.Controllers
+namespace VaccineCredentialsIssuer.Controllers
 {
     [Route("api/[controller]")]
     public class AccountController : ControllerBase

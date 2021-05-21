@@ -1,25 +1,25 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace NationalDrivingLicense.Pages
+namespace VaccineCredentialsIssuer.Pages
 {
     public class ViewLastCredentialsInfoModel : PageModel
     {
-        private readonly DriverLicenseCredentialsService _driverLicenseCredentialsService;
+        private readonly VaccineCredentialsIssuerCredentialsService _vaccineCredentialsIssuerCredentialsService;
 
-        public string LatestDriverLicenseDid { get; set; }
-        public string LatestDriverLicenseCallback { get; set; }
+        public string LatestVaccinationDid { get; set; }
+        public string LatestVaccinationDataCallback { get; set; }
 
         public string CredentialOfferUrl { get; set; }
-        public ViewLastCredentialsInfoModel(DriverLicenseCredentialsService driverLicenseCredentialsService)
+        public ViewLastCredentialsInfoModel(VaccineCredentialsIssuerCredentialsService vaccineCredentialsIssuerCredentialsService)
         {
-            _driverLicenseCredentialsService = driverLicenseCredentialsService;
+            _vaccineCredentialsIssuerCredentialsService = vaccineCredentialsIssuerCredentialsService;
         }
         public async Task OnGetAsync()
         {
-            var driverLicenseCredentialIssuer = await _driverLicenseCredentialsService.GetLastDriverLicenseCredentialIssuer();
-            LatestDriverLicenseCallback = driverLicenseCredentialIssuer.Callback;
-            LatestDriverLicenseDid = driverLicenseCredentialIssuer.DidId;
+            var credentialIssuer = await _vaccineCredentialsIssuerCredentialsService.GetLastVaccineCredentialIssuer();
+            LatestVaccinationDataCallback = credentialIssuer.Callback;
+            LatestVaccinationDid = credentialIssuer.DidId;
         }
     }
 }

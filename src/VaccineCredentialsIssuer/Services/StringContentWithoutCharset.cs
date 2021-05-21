@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Text;
 
-namespace NationalDrivingLicense.Services
+namespace VaccineCredentialsIssuer.Services
 {
     public class StringContentWithoutCharset : StringContent
     {
