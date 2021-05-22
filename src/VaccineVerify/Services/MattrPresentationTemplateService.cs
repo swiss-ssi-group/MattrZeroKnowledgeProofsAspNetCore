@@ -109,7 +109,7 @@ namespace VaccineVerify
             var payload = new MattrOpenApiClient.V1_CreatePresentationTemplate
             {
                 Domain = _mattrConfiguration.TenantSubdomain,
-                Name = "zkp-certificate-presentation",
+                Name = "zkp-certificate-presentation-2",
                 Query = new List<Query>
                 {
                     new Query
