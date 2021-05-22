@@ -78,9 +78,9 @@ namespace VaccineCredentialsIssuer
                     IssuerDid = did.Did,
                     Name = "VaccineCredentialsIssuer",
                     Context = new List<Uri> {
-                         new Uri( "https://schema.org") // Only this is supported
+                         new Uri( "https://schema.org"), new Uri( "https://www.w3.org/2018/credentials/v1")
                     },
-                    Type = new List<string> { "VaccineCredentialsIssuer" }
+                    Type = new List<string> { "VerifiableCredential", "Vaccine" }
                 },
                 ClaimMappings = new List<ClaimMappings>
                 {

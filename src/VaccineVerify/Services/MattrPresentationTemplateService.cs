@@ -95,6 +95,7 @@ namespace VaccineVerify
                         Context = new List<object>{
                             "https://www.w3.org/2018/credentials/v1",
                             "https://w3id.org/vc-revocation-list-2020/v1",
+                            "https://w3c-ccg.github.io/ldp-bbs2020/context/v1",
                             "https://schema.org"
                         },
                         Type = "VerifiableCredential",
