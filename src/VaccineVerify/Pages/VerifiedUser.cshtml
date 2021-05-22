@@ -1,0 +1,52 @@
+﻿@page "{handler?}"
+@model VaccineVerify.Pages.VerifiedUserModel
+@{
+}
+
+<h1>Driver license verified</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <div>
+                <img src="~/pexels-artem-podrez-5878503.jpg" width="100" alt="Vaccine" />
+                <div>
+                    <b>Verified Driver Licence for:@Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.FirstName) @Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.Name)</b>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4">Issued</dt>
+                        <dd class="col-sm-8">
+                            @Model.VerifiedDriverLicenseClaims.LicenseIssuedAt
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.VerifiedDriverLicenseClaims.Name)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.Name)
+                        </dd>
+                        <dt class="col-sm-4">First Name</dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.FirstName)
+                        </dd>
+                        <dt class="col-sm-4">License Type</dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.LicenseType)
+                        </dd>
+                        <dt class="col-sm-4">Date of Birth</dt>
+                        <dd class="col-sm-8">
+                            @Model.VerifiedDriverLicenseClaims.DateOfBirth
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+       
+        <div class="col-sm">
+            <img src="~/pexels-gustavo-fring-3985170.jpg" width="200" />
+            <dl class="row">
+                <dt class="col-sm-12">Proceed valicated</dt>
+
+            </dl>
+            <button class="btn btn-outline-primary">Success</button>
+        </div>
+    </div>
+</div>

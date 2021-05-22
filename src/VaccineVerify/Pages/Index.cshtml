@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Covid Vaccination Verify";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="~/pexels-gustavo-fring-3985170.jpg" width="250" />
+        </div>
+        <div class="col-sm-8">
+            <div class="text-center">
+                <br />
+                <h4>Verify vaccination please</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="card-deck mb-3 text-center">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Covid vaccine</h4>
+        </div>
+        <div class="card-body">
+            <a asp-page="CreateVerifierDisplayQrCode" class="btn btn-lg btn-block btn-outline-primary">Verify</a>
+        </div>
+    </div>
+</div>
