@@ -69,6 +69,7 @@ namespace VaccineVerify
 
             var template = await _vaccineVerifyDbService.GetLastVaccinationDataPrsentationTemplate();
 
+            // TODO this is null and the signing is not working
             // Invoke the Presentation Request
             var invokePresentationResponse = await InvokePresentationRequest(
                 client,
@@ -78,7 +79,7 @@ namespace VaccineVerify
                 callbackUrlFull);
 
             var didToVerify = await _mattrCreateDidService.GetDidOrCreate("did_for_verify");
-            // Request DID 
+            // Request DID from ledger
             V1_GetDidResponse did = await RequestDID(didToVerify.Did, client);
 
             // Sign and Encode the Presentation Request body
