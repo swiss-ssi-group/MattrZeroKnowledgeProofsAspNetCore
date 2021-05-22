@@ -69,10 +69,6 @@ namespace VaccineVerify
 
             var template = await _vaccineVerifyDbService.GetLastVaccinationDataPrsentationTemplate();
 
-            var didToVerify = await _mattrCreateDidService.GetDidOrCreate("did_for_verify");
-            // Request DID 
-            V1_GetDidResponse did = await RequestDID(didToVerify.Did, client);
-
             // Invoke the Presentation Request
             var invokePresentationResponse = await InvokePresentationRequest(
                 client,
@@ -81,8 +77,9 @@ namespace VaccineVerify
                 challenge,
                 callbackUrlFull);
 
+            var didToVerify = await _mattrCreateDidService.GetDidOrCreate("did_for_verify");
             // Request DID 
-            //V1_GetDidResponse did = await RequestDID(template.DidId, client);
+            V1_GetDidResponse did = await RequestDID(didToVerify.Did, client);
 
             // Sign and Encode the Presentation Request body
             var signAndEncodePresentationRequestBodyResponse = await SignAndEncodePresentationRequestBody(

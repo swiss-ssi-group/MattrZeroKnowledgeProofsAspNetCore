@@ -34,7 +34,13 @@ namespace VaccineVerify.Services
 
         public async Task<V1_CreateDidResponse> GetDidOrCreate(string name)
         {
-            // TODO search database first, no need to create a new one each time
+            var did = await _vaccineVerifyDbService.GetDid(name);
+            if(did != null)
+            {
+                var payload = JsonConvert.DeserializeObject<V1_CreateDidResponse>(did.DidData);
+                return payload;
+            }
+
             var didMattr = await Create(name);
 
             return didMattr;
