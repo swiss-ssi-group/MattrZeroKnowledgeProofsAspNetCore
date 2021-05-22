@@ -5,6 +5,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using VaccineVerify.Data;
 using VaccineVerify.MattrOpenApiClient;
 
 namespace VaccineVerify.Services
@@ -15,19 +16,31 @@ namespace VaccineVerify.Services
         private readonly IHttpClientFactory _clientFactory;
         private readonly MattrTokenApiService _mattrTokenApiService;
         private readonly MattrConfiguration _mattrConfiguration;
+        private readonly VaccineVerifyDbService _vaccineVerifyDbService;
+
 
         public MattrCreateDidService(IConfiguration configuration,
             IHttpClientFactory clientFactory,
             IOptions<MattrConfiguration> mattrConfiguration,
-            MattrTokenApiService mattrTokenApiService)
+            MattrTokenApiService mattrTokenApiService,
+            VaccineVerifyDbService vaccineVerifyDbService)
         {
             _configuration = configuration;
             _clientFactory = clientFactory;
             _mattrTokenApiService = mattrTokenApiService;
             _mattrConfiguration = mattrConfiguration.Value;
+            _vaccineVerifyDbService = vaccineVerifyDbService;
         }
 
-        public async Task<V1_CreateDidResponse> CreateMattrDidAndSave()
+        public async Task<V1_CreateDidResponse> GetDidOrCreate(string name)
+        {
+            // TODO search database first, no need to create a new one each time
+            var didMattr = await Create(name);
+
+            return didMattr;
+        }
+
+        public async Task<V1_CreateDidResponse> Create(string name)
         {
             HttpClient client = _clientFactory.CreateClient();
             var accessToken = await _mattrTokenApiService.GetApiToken(client, "mattrAccessToken");
@@ -35,10 +48,19 @@ namespace VaccineVerify.Services
                 new AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
 
-            var did = await CreateMattrDid(client);
+            var didMattr = await CreateMattrDid(client);
+            var data = JsonConvert.SerializeObject(didMattr);
+            var did = new Did
+            {
+                Name = name,
+                DidData = data,
+                DidTypeId = "ed25519",
+                DidId = didMattr.Did
+            };
 
-            var data =  JsonConvert.SerializeObject(did);
-            return did;
+            await _vaccineVerifyDbService.CreateDid(did);
+
+            return didMattr;
         }
 
         private async Task<V1_CreateDidResponse> CreateMattrDid(HttpClient client)

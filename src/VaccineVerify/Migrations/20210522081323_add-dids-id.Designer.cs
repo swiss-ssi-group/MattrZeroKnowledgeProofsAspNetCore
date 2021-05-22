@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VaccineVerify.Data;
 
 namespace VaccineVerify.Migrations
 {
     [DbContext(typeof(VaccineVerifyVerifyMattrContext))]
-    partial class VaccineVerifyVerifyMattrContextModelSnapshot : ModelSnapshot
+    [Migration("20210522081323_add-dids-id")]
+    partial class adddidsid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

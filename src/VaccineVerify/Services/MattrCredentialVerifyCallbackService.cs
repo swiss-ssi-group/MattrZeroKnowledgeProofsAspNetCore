@@ -26,19 +26,23 @@ namespace VaccineVerify
 
         private readonly IHttpClientFactory _clientFactory;
         private readonly MattrTokenApiService _mattrTokenApiService;
-        private readonly VaccineVerifyDbService _VaccineVerifyDbService;
+        private readonly VaccineVerifyDbService _vaccineVerifyDbService;
         private readonly MattrConfiguration _mattrConfiguration;
+        private readonly MattrCreateDidService _mattrCreateDidService;
 
         public MattrCredentialVerifyCallbackService(IHttpClientFactory clientFactory,
             IOptions<MattrConfiguration> mattrConfiguration,
             MattrTokenApiService mattrTokenApiService,
-            VaccineVerifyDbService VaccineVerifyDbService)
+            VaccineVerifyDbService vaccineVerifyDbService,
+            MattrCreateDidService mattrCreateDidService)
         {
             _clientFactory = clientFactory;
             _mattrTokenApiService = mattrTokenApiService;
-            _VaccineVerifyDbService = VaccineVerifyDbService;
+            _vaccineVerifyDbService = vaccineVerifyDbService;
             _mattrConfiguration = mattrConfiguration.Value;
+            _mattrCreateDidService = mattrCreateDidService;
         }
+
 
         /// <summary>
         /// https://learn.mattr.global/tutorials/verify/using-callback/callback-e-to-e
@@ -63,10 +67,11 @@ namespace VaccineVerify
                 new AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
 
-            var template = await _VaccineVerifyDbService.GetLastVaccinationDataPrsentationTemplate();
+            var template = await _vaccineVerifyDbService.GetLastVaccinationDataPrsentationTemplate();
 
+            var didToVerify = await _mattrCreateDidService.GetDidOrCreate("did_for_verify");
             // Request DID 
-            V1_GetDidResponse did = await RequestDID(template.DidId, client);
+            V1_GetDidResponse did = await RequestDID(didToVerify.Did, client);
 
             // Invoke the Presentation Request
             var invokePresentationResponse = await InvokePresentationRequest(
@@ -97,7 +102,7 @@ namespace VaccineVerify
                 Did = JsonConvert.SerializeObject(did),
                 SignAndEncodePresentationRequestBody = jws
             };
-            await _VaccineVerifyDbService.CreateVaccinationDataPresentationVerify(vaccinationDataPresentationVerify);
+            await _vaccineVerifyDbService.CreateVaccinationDataPresentationVerify(vaccinationDataPresentationVerify);
 
             var qrCodeUrl = $"didcomm://https://{_mattrConfiguration.TenantSubdomain}/?request={jws}";
 

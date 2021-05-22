@@ -10,9 +10,9 @@ namespace VaccineVerify
     {
         private readonly VaccineVerifyVerifyMattrContext _vaccineVerifyVerifyMattrContext;
 
-        public VaccineVerifyDbService(VaccineVerifyVerifyMattrContext VaccineVerifyVerifyMattrContext)
+        public VaccineVerifyDbService(VaccineVerifyVerifyMattrContext vaccineVerifyVerifyMattrContext)
         {
-            _vaccineVerifyVerifyMattrContext = VaccineVerifyVerifyMattrContext;
+            _vaccineVerifyVerifyMattrContext = vaccineVerifyVerifyMattrContext;
         }
 
         public async Task<(string DidId, string TemplateId)> GetLastVaccinationDataPrsentationTemplate()
