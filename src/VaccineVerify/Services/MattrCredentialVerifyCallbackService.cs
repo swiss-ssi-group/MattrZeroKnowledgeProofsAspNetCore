@@ -133,8 +133,9 @@ namespace VaccineVerify
 
                 if (response.StatusCode == System.Net.HttpStatusCode.Created)
                 {
+                    var responseContent = await response.Content.ReadAsStringAsync();
                     var v1CreatePresentationRequestResponse = JsonConvert.DeserializeObject<V1_CreatePresentationRequestResponse>(
-                            await response.Content.ReadAsStringAsync());
+                            responseContent);
 
                     return v1CreatePresentationRequestResponse;
                 }

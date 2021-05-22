@@ -2405,7 +2405,7 @@ namespace VaccineVerify.MattrOpenApiClient
     {
         /// <summary>Challenge to match the response to a request</summary>
         [Newtonsoft.Json.JsonProperty("challenge", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid Challenge { get; set; }
+        public string Challenge { get; set; }
     
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
     
