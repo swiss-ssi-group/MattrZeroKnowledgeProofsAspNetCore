@@ -65,6 +65,9 @@ namespace VaccineVerify
 
             var template = await _VaccineVerifyDbService.GetLastVaccinationDataPrsentationTemplate();
 
+            // Request DID 
+            V1_GetDidResponse did = await RequestDID(template.DidId, client);
+
             // Invoke the Presentation Request
             var invokePresentationResponse = await InvokePresentationRequest(
                 client,
@@ -74,7 +77,7 @@ namespace VaccineVerify
                 callbackUrlFull);
 
             // Request DID 
-            V1_GetDidResponse did = await RequestDID(template.DidId, client);
+            //V1_GetDidResponse did = await RequestDID(template.DidId, client);
 
             // Sign and Encode the Presentation Request body
             var signAndEncodePresentationRequestBodyResponse = await SignAndEncodePresentationRequestBody(
@@ -84,7 +87,7 @@ namespace VaccineVerify
             var jws = signAndEncodePresentationRequestBodyResponse.Replace("\"", "");
 
             // save to db // TODO add this back once working
-            var drivingLicensePresentationVerify = new VaccinationDataPresentationVerify
+            var vaccinationDataPresentationVerify = new VaccinationDataPresentationVerify
             {
                 DidId = template.DidId,
                 TemplateId = template.TemplateId,
@@ -94,7 +97,7 @@ namespace VaccineVerify
                 Did = JsonConvert.SerializeObject(did),
                 SignAndEncodePresentationRequestBody = jws
             };
-            await _VaccineVerifyDbService.CreateVaccinationDataPresentationVerify(drivingLicensePresentationVerify);
+            await _VaccineVerifyDbService.CreateVaccinationDataPresentationVerify(vaccinationDataPresentationVerify);
 
             var qrCodeUrl = $"didcomm://https://{_mattrConfiguration.TenantSubdomain}/?request={jws}";
 
