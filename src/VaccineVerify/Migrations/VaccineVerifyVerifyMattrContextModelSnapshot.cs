@@ -18,30 +18,6 @@ namespace VaccineVerify.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("VaccineVerify.Data.Did", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("DidData")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DidId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DidTypeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Dids");
-                });
-
             modelBuilder.Entity("VaccineVerify.Data.VaccinationDataPresentationTemplate", b =>
                 {
                     b.Property<int>("Id")
