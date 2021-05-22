@@ -41,14 +41,12 @@ namespace VaccineVerify.Pages
             ChallengeId = challenge;
             return Page();
 
-
-
             //var result = await _mattrCredentialVerifyCallbackService
             //    .CreateVerifyCallback(CallbackUrlDto.CallbackUrl);
 
             //CreatingVerifier = false;
 
-            //QrCodeUrl = result.QrCodeUrl;
+            //QrCodeUrl = result.QrCodeUrl.Trim();
             //ChallengeId = result.ChallengeId;
             //return Page();
         }

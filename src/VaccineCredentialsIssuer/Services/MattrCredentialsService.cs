@@ -76,20 +76,22 @@ namespace VaccineCredentialsIssuer
                 Credential = new Credential
                 {
                     IssuerDid = did.Did,
-                    Name = "VaccineCredentialsIssuer",
+                    Name = "VaccinationCertificate",
                     Context = new List<Uri> {
-                         new Uri( "https://schema.org"), new Uri( "https://www.w3.org/2018/credentials/v1")
+                        new Uri( "https://schema.org"), 
+                        new Uri( "https://www.w3.org/2018/credentials/v1"), 
+                        new Uri( "https://w3id.org/vaccination/v1")
                     },
-                    Type = new List<string> { "VerifiableCredential", "Vaccine" }
+                    Type = new List<string> { "VerifiableCredential", "VaccinationCertificate" }
                 },
                 ClaimMappings = new List<ClaimMappings>
                 {
-                    new ClaimMappings{ JsonLdTerm="family_name", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/familyName"},
-                    new ClaimMappings{ JsonLdTerm="given_name", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/givenName"},
+                    new ClaimMappings{ JsonLdTerm="family_name", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/family_name"},
+                    new ClaimMappings{ JsonLdTerm="given_name", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/given_name"},
                     new ClaimMappings{ JsonLdTerm="date_of_birth", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/date_of_birth"},
                     new ClaimMappings{ JsonLdTerm="medicinal_product_code", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/medicinal_product_code"},
                     new ClaimMappings{ JsonLdTerm="number_of_doses", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/number_of_doses"},
-                    new ClaimMappings{ JsonLdTerm="total_number_of_doses", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/totalNumber_of_doses"},
+                    new ClaimMappings{ JsonLdTerm="total_number_of_doses", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/total_number_of_doses"},
                     new ClaimMappings{ JsonLdTerm="vaccination_date", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/vaccination_date"},
                     new ClaimMappings{ JsonLdTerm="country_of_vaccination", OidcClaim=$"https://{_mattrConfiguration.TenantSubdomain}/country_of_vaccination"}
                 },
