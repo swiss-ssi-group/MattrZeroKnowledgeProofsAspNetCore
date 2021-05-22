@@ -8,16 +8,16 @@ namespace VaccineVerify
 {
     public class VaccineVerifyDbService
     {
-        private readonly VaccineVerifyVerifyMattrContext _VaccineVerifyVerifyMattrContext;
+        private readonly VaccineVerifyVerifyMattrContext _vaccineVerifyVerifyMattrContext;
 
         public VaccineVerifyDbService(VaccineVerifyVerifyMattrContext VaccineVerifyVerifyMattrContext)
         {
-            _VaccineVerifyVerifyMattrContext = VaccineVerifyVerifyMattrContext;
+            _vaccineVerifyVerifyMattrContext = VaccineVerifyVerifyMattrContext;
         }
 
         public async Task<(string DidId, string TemplateId)> GetLastVaccinationDataPrsentationTemplate()
         {
-            var driverLicenseTemplate = await _VaccineVerifyVerifyMattrContext
+            var driverLicenseTemplate = await _vaccineVerifyVerifyMattrContext
                 .VaccinationDataPresentationTemplates
                 .OrderBy(u => u.Id)
                 .LastOrDefaultAsync();
@@ -33,21 +33,21 @@ namespace VaccineVerify
 
         public async Task CreateVaccinationDataTemplate(VaccinationDataPresentationTemplate vaccinationDataPresentationTemplate)
         {
-            _VaccineVerifyVerifyMattrContext.VaccinationDataPresentationTemplates.Add(vaccinationDataPresentationTemplate);
-            await _VaccineVerifyVerifyMattrContext.SaveChangesAsync();
+            _vaccineVerifyVerifyMattrContext.VaccinationDataPresentationTemplates.Add(vaccinationDataPresentationTemplate);
+            await _vaccineVerifyVerifyMattrContext.SaveChangesAsync();
         }
 
         public async Task<bool> ChallengeExists(string challengeId)
         {
-            return await _VaccineVerifyVerifyMattrContext
+            return await _vaccineVerifyVerifyMattrContext
                 .VaccinationDataPresentationVerifications
                 .AnyAsync(d => d.Challenge == challengeId);
         }
 
         public async Task CreateVaccinationDataPresentationVerify(VaccinationDataPresentationVerify vaccinationDataPresentationVerify)
         {
-            _VaccineVerifyVerifyMattrContext.VaccinationDataPresentationVerifications.Add(vaccinationDataPresentationVerify);
-            await _VaccineVerifyVerifyMattrContext.SaveChangesAsync();
+            _vaccineVerifyVerifyMattrContext.VaccinationDataPresentationVerifications.Add(vaccinationDataPresentationVerify);
+            await _vaccineVerifyVerifyMattrContext.SaveChangesAsync();
         }
 
         public async Task PersistVerification(VerifiedVaccinationData item)
@@ -66,15 +66,29 @@ namespace VaccineVerify
                 Verified = item.Verified
             };
 
-            _VaccineVerifyVerifyMattrContext.VerifiedVaccinationsData.Add(data);
-            await _VaccineVerifyVerifyMattrContext.SaveChangesAsync();
+            _vaccineVerifyVerifyMattrContext.VerifiedVaccinationsData.Add(data);
+            await _vaccineVerifyVerifyMattrContext.SaveChangesAsync();
         }
 
         public async Task<VerifiedVaccinationsData> GetVerifiedUser(string challengeId)
         {
-            return await _VaccineVerifyVerifyMattrContext
+            return await _vaccineVerifyVerifyMattrContext
                 .VerifiedVaccinationsData
                 .FirstOrDefaultAsync(v => v.ChallengeId == challengeId);
+        }
+
+        public async Task<Did> GetDid(string name)
+        {
+            return await _vaccineVerifyVerifyMattrContext
+                .Dids
+                .FirstOrDefaultAsync(v => v.Name == name);
+        }
+
+        public async Task<Did> CreateDid(Did did)
+        {
+            _vaccineVerifyVerifyMattrContext.Dids.Add(did);
+            await _vaccineVerifyVerifyMattrContext.SaveChangesAsync();
+            return did;
         }
     }
 }
