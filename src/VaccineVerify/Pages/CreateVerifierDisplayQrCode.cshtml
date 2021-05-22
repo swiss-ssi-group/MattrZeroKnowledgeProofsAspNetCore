@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="height:850px">
         <div class="col-sm">
             <div class="qr" id="qrCode"></div>
             <input asp-for="ChallengeId" hidden/>
@@ -47,15 +47,17 @@
     </div>
 </div>
 
+<br /><br />
+
 @section scripts {
 <script src="~/js/qrcode.min.js"></script>
 <script type="text/javascript">
     new QRCode(document.getElementById("qrCode"),
     {
         text: "@Html.Raw(Model.QrCodeUrl)",
-        width: 400,
-        height: 400,
-        correctLevel: QRCode.CorrectLevel.L
+        width: 800,
+        height: 800,
+        correctLevel: QRCode.CorrectLevel.M
     });
 
     $(document).ready(() => {
