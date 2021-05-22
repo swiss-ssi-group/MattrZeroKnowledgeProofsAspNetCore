@@ -18,6 +18,7 @@
     "VaccineVerify": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "index",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

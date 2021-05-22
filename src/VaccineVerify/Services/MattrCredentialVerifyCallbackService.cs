@@ -78,9 +78,9 @@ namespace VaccineVerify
                 challenge,
                 callbackUrlFull);
 
-            var didToVerify = await _mattrCreateDidService.GetDidOrCreate("did_for_verify");
+            //var didToVerify = await _mattrCreateDidService.GetDidOrCreate("did_for_verify");
             // Request DID from ledger
-            V1_GetDidResponse did = await RequestDID(didToVerify.Did, client);
+            V1_GetDidResponse did = await RequestDID(template.DidId, client);
 
             // Sign and Encode the Presentation Request body
             var signAndEncodePresentationRequestBodyResponse = await SignAndEncodePresentationRequestBody(
