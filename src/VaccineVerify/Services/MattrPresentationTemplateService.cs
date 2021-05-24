@@ -94,7 +94,7 @@ namespace VaccineVerify
                     {
                         Context = new List<object>{
                             "https://www.w3.org/2018/credentials/v1",
-                            "https://w3c-ccg.github.io/ldp-bbs2020/contexts/v1",
+                            "https://w3c-ccg.github.io/ldp-bbs2020/context/v1",
                             "https://schema.org",
                         },
                         Type = "VerifiableCredential",
@@ -108,7 +108,7 @@ namespace VaccineVerify
             var payload = new MattrOpenApiClient.V1_CreatePresentationTemplate
             {
                 Domain = _mattrConfiguration.TenantSubdomain,
-                Name = "zkp-certificate-presentation-4",
+                Name = "zkp-certificate-presentation-7",
                 Query = new List<Query>
                 {
                     new Query
