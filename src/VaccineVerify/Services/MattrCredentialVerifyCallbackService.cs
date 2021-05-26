@@ -103,8 +103,6 @@ namespace VaccineVerify
 
             var walletUrl = $"https://{_mattrConfiguration.TenantSubdomain}/?request={jws}";
 
-            //var qrCodeUrl = $"didcomm://{walletUrl}";
-
             return (walletUrl, challenge);
         }
 

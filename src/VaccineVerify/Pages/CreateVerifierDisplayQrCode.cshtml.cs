@@ -53,7 +53,10 @@ namespace VaccineVerify.Pages
             ChallengeId = result.ChallengeId;
             VerificationRedirectController.WalletUrls.Add(ChallengeId, walletUrl);
 
-            QrCodeUrl = $"https://{HttpContext.Request.Host.Value}/VerificationRedirect/{ChallengeId}";
+            // https://learn.mattr.global/tutorials/verify/using-callback/callback-e-to-e#redirect-urls
+            //var qrCodeUrl = $"didcomm://{walletUrl}";
+
+            QrCodeUrl = $"didcomm://https://{HttpContext.Request.Host.Value}/VerificationRedirect/{ChallengeId}";
             return Page();
         }
     }
