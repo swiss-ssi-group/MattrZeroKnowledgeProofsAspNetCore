@@ -108,7 +108,7 @@ namespace VaccineVerify
             var payload = new MattrOpenApiClient.V1_CreatePresentationTemplate
             {
                 Domain = _mattrConfiguration.TenantSubdomain,
-                Name = "zkp-certificate-presentation-10",
+                Name = "zkp-certificate-presentation-11",
                 Query = new List<Query>
                 {
                     new Query
@@ -165,20 +165,20 @@ namespace VaccineVerify
         [System.ComponentModel.DataAnnotations.Required]
         public object MedicinalProductCode { get; set; } = new object();
 
-        [Newtonsoft.Json.JsonProperty("number_of_doses", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public object NumberOfDoses { get; set; } = new object();
+        //[Newtonsoft.Json.JsonProperty("number_of_doses", Required = Newtonsoft.Json.Required.Always)]
+        //[System.ComponentModel.DataAnnotations.Required]
+        //public object NumberOfDoses { get; set; } = new object();
 
-        [Newtonsoft.Json.JsonProperty("total_number_of_doses", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public object TotalNumberOfDoses { get; set; } = new object();
+        //[Newtonsoft.Json.JsonProperty("total_number_of_doses", Required = Newtonsoft.Json.Required.Always)]
+        //[System.ComponentModel.DataAnnotations.Required]
+        //public object TotalNumberOfDoses { get; set; } = new object();
 
-        [Newtonsoft.Json.JsonProperty("vaccination_date", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public object VaccinationDate { get; set; } = new object();
+        //[Newtonsoft.Json.JsonProperty("vaccination_date", Required = Newtonsoft.Json.Required.Always)]
+        //[System.ComponentModel.DataAnnotations.Required]
+        //public object VaccinationDate { get; set; } = new object();
 
-        [Newtonsoft.Json.JsonProperty("country_of_vaccination", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public object CountryOfVaccination { get; set; } = new object();
+        //[Newtonsoft.Json.JsonProperty("country_of_vaccination", Required = Newtonsoft.Json.Required.Always)]
+        //[System.ComponentModel.DataAnnotations.Required]
+        //public object CountryOfVaccination { get; set; } = new object();
     }
 }
