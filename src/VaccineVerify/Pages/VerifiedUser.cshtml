@@ -13,10 +13,10 @@
                     <b>Verified Vaccination Data for:@Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.GivenName) @Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.FamilyName)</b>
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-4">Vaccinated in @Model.VerifiedVaccinationDataClaims.CountryOfVaccination on:</dt>
+                        @*<dt class="col-sm-4">Vaccinated in @Model.VerifiedVaccinationDataClaims.CountryOfVaccination on:</dt>
                         <dd class="col-sm-8">
                             @Model.VerifiedVaccinationDataClaims.VaccinationDate
-                        </dd>
+                        </dd>*@
                         <dt class="col-sm-4">
                             @Html.DisplayNameFor(model => model.VerifiedVaccinationDataClaims.MedicinalProductCode)
                         </dt>

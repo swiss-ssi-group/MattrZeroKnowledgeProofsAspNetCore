@@ -20,8 +20,8 @@ namespace VaccineVerify.Controllers
     {
         public string Id { get; set; }
 
-        [JsonPropertyName("http://schema.org/country_of_vaccination")]
-        public string CountryOfVaccination { get; set; }
+        //[JsonPropertyName("http://schema.org/country_of_vaccination")]
+        //public string CountryOfVaccination { get; set; }
 
         [JsonPropertyName("http://schema.org/date_of_birth")]
         public string DateOfBirth { get; set; }
@@ -35,13 +35,13 @@ namespace VaccineVerify.Controllers
         [JsonPropertyName("http://schema.org/medicinal_product_code")]
         public string MedicinalProductCode { get; set; }
 
-        [JsonPropertyName("http://schema.org/number_of_doses")]
-        public string NumberOfDoses { get; set; }
+        //[JsonPropertyName("http://schema.org/number_of_doses")]
+        //public string NumberOfDoses { get; set; }
 
-        [JsonPropertyName("http://schema.org/total_number_of_doses")]
-        public string TotalNumberOfDoses { get; set; }
+        //[JsonPropertyName("http://schema.org/total_number_of_doses")]
+        //public string TotalNumberOfDoses { get; set; }
 
-        [JsonPropertyName("http://schema.org/vaccination_date")]
-        public string VaccinationDate { get; set; }
+        //[JsonPropertyName("http://schema.org/vaccination_date")]
+        //public string VaccinationDate { get; set; }
     }
 }
