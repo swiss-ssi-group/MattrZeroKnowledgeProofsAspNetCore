@@ -49,7 +49,7 @@ namespace VaccineVerify
         /// </summary>
         /// <param name="callbackBaseUrl"></param>
         /// <returns></returns>
-        public async Task<(string QrCodeUrl, string ChallengeId)> CreateVerifyCallback(string callbackBaseUrl)
+        public async Task<(string WalletUrl, string ChallengeId)> CreateVerifyCallback(string callbackBaseUrl)
         {
             callbackBaseUrl = callbackBaseUrl.Trim();
             if (!callbackBaseUrl.EndsWith('/'))
@@ -101,9 +101,11 @@ namespace VaccineVerify
             };
             await _vaccineVerifyDbService.CreateVaccinationDataPresentationVerify(vaccinationDataPresentationVerify);
 
-            var qrCodeUrl = $"didcomm://https://{_mattrConfiguration.TenantSubdomain}/?request={jws}";
+            var walletUrl = $"https://{_mattrConfiguration.TenantSubdomain}/?request={jws}";
 
-            return (qrCodeUrl, challenge);
+            //var qrCodeUrl = $"didcomm://{walletUrl}";
+
+            return (walletUrl, challenge);
         }
 
         private async Task<V1_CreatePresentationRequestResponse> InvokePresentationRequest(

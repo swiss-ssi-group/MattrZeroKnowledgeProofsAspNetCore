@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model VaccineVerify.Pages.CreateVerifierDisplayQrCodeModel
 
 <div class="container-fluid">
@@ -42,26 +42,27 @@
     <div class="row" style="height:850px">
         <div class="col-sm">
             <div class="qr" id="qrCode"></div>
-            <input asp-for="ChallengeId" hidden/>
+            <input asp-for="ChallengeId" hidden />
         </div>
     </div>
 </div>
 
-<br /><br />
+<br />
+<br />
 
 @section scripts {
-<script src="~/js/qrcode.min.js"></script>
-<script type="text/javascript">
+    <script src="~/js/qrcode.min.js"></script>
+    <script type="text/javascript">
     new QRCode(document.getElementById("qrCode"),
     {
         text: "@Html.Raw(Model.QrCodeUrl)",
-        width: 800,
-        height: 800,
+        width: 300,
+        height: 300,
         correctLevel: QRCode.CorrectLevel.L
     });
 
     $(document).ready(() => {
- 
+
     });
 
     var connection = new signalR.HubConnectionBuilder().withUrl("/mattrVerifiedSuccessHub").build();
@@ -74,7 +75,7 @@
     connection.start().then(function () {
         //console.log(connection.connectionId);
         const challengeId = $("#ChallengeId").val();
-        
+
         if (challengeId) {
             console.log(challengeId);
             // join message
@@ -85,5 +86,5 @@
     }).catch(function (err) {
         return console.error(err.toString());
     });
-</script>
+    </script>
 }
