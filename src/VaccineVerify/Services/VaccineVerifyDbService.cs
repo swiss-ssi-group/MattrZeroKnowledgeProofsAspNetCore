@@ -17,15 +17,15 @@ namespace VaccineVerify
 
         public async Task<(string DidId, string TemplateId)> GetLastVaccinationDataPresentationTemplate()
         {
-            var driverLicenseTemplate = await _vaccineVerifyVerifyMattrContext
+            var vaccineTemplate = await _vaccineVerifyVerifyMattrContext
                 .VaccinationDataPresentationTemplates
                 .OrderBy(u => u.Id)
                 .LastOrDefaultAsync();
 
-            if (driverLicenseTemplate != null)
+            if (vaccineTemplate != null)
             {
-                var templateId = driverLicenseTemplate.TemplateId;
-                return (driverLicenseTemplate.DidId, driverLicenseTemplate.TemplateId);
+                var templateId = vaccineTemplate.TemplateId;
+                return (vaccineTemplate.DidId, vaccineTemplate.TemplateId);
             }
 
             return (string.Empty, string.Empty);
