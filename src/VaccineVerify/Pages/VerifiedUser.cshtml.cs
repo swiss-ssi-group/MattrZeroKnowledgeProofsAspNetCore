@@ -13,7 +13,7 @@ namespace VaccineVerify.Pages
         }
 
         public string ChallengeId { get; set; }
-        public DriverLicenseClaimsDto VerifiedDriverLicenseClaims { get; private set; }
+        public VaccineVerifiedClaimsDto VerifiedVaccinationDataClaims { get; private set; }
 
         public async Task OnGetAsync(string challengeId)
         {
@@ -21,24 +21,26 @@ namespace VaccineVerify.Pages
             if (challengeId != null)
             {
                 var verifiedDriverLicenseUser = await _VaccineVerifyDbService.GetVerifiedUser(challengeId);
-                VerifiedDriverLicenseClaims = new DriverLicenseClaimsDto
+                VerifiedVaccinationDataClaims = new VaccineVerifiedClaimsDto
                 {
                     DateOfBirth = verifiedDriverLicenseUser.DateOfBirth,
-                    Name = verifiedDriverLicenseUser.Name,
-                    LicenseType = verifiedDriverLicenseUser.LicenseType,
-                    FirstName = verifiedDriverLicenseUser.FirstName,
-                    LicenseIssuedAt = verifiedDriverLicenseUser.LicenseIssuedAt
+                    MedicinalProductCode = verifiedDriverLicenseUser.MedicinalProductCode,
+                    FamilyName = verifiedDriverLicenseUser.FamilyName,
+                    GivenName = verifiedDriverLicenseUser.GivenName,
+                    VaccinationDate = verifiedDriverLicenseUser.VaccinationDate,
+                    CountryOfVaccination = verifiedDriverLicenseUser.CountryOfVaccination
                 };
             }
         }
     }
 
-    public class DriverLicenseClaimsDto
+    public class VaccineVerifiedClaimsDto
     {
-        public string Name { get; set; }
-        public string FirstName { get; set; }
-        public string LicenseType { get; set; }
+        public string MedicinalProductCode { get; set; }
+        public string GivenName { get; set; }
+        public string FamilyName { get; set; }
         public string DateOfBirth { get; set; }
-        public string LicenseIssuedAt { get; set; }
+        public string VaccinationDate { get; set; }
+        public string CountryOfVaccination { get; set; }
     }
 }

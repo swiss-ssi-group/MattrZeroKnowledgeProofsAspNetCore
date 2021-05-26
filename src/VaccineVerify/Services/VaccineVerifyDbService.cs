@@ -54,14 +54,18 @@ namespace VaccineVerify
         {
             var data = new VerifiedVaccinationsData
             {
-                DateOfBirth = item.Claims.DateOfBirth,
-                ChallengeId = item.ChallengeId,
                 ClaimsId = item.Claims.Id,
-                FirstName = item.Claims.FirstName,
+                CountryOfVaccination = item.Claims.CountryOfVaccination,
+                DateOfBirth = item.Claims.DateOfBirth,
+                FamilyName = item.Claims.FamilyName,
+                GivenName = item.Claims.GivenName,
+                MedicinalProductCode = item.Claims.MedicinalProductCode,
+                NumberOfDoses = item.Claims.NumberOfDoses,
+                TotalNumberOfDoses = item.Claims.TotalNumberOfDoses,
+                VaccinationDate = item.Claims.VaccinationDate,
+
+                ChallengeId = item.ChallengeId,
                 Holder = item.Holder,
-                LicenseIssuedAt = item.Claims.LicenseIssuedAt,
-                LicenseType = item.Claims.LicenseType,
-                Name = item.Claims.Name,
                 PresentationType = item.PresentationType,
                 Verified = item.Verified
             };

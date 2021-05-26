@@ -3,20 +3,23 @@ using System.Text.Json.Serialization;
 
 namespace VaccineVerify.Controllers
 {
-    /// {
-    ///  "presentationType": "QueryByExample",
-    ///  "challengeId": "GW8FGpP6jhFrl37yQZIM6w",
-    ///  "claims": {
-    ///      "id": "did:key:z6MkfxQU7dy8eKxyHpG267FV23agZQu9zmokd8BprepfHALi",
-    ///      "name": "Chris",
-    ///      "firstName": "Shin",
-    ///      "licenseType": "Certificate Name",
-    ///      "dateOfBirth": "some data",
-    ///      "licenseIssuedAt": "dda"
-    ///  },
-    ///  "verified": true,
-    ///  "holder": "did:key:z6MkgmEkNM32vyFeMXcQA7AfQDznu47qHCZpy2AYH2Dtdu1d"
-    /// }
+    ///{
+    ///    "presentationType": "QueryByFrame",
+    ///    "challengeId": "RhOtpTa8vNh1EId6sJ7AVD3prerMMDSkfWZrUPzt",
+    ///    "claims": {
+    ///        "id": "did:key:z6MkmGHPWdKjLqiTydLHvRRdHPNDdUDKDudjiF87RNFjM2fb",
+    ///        "http://schema.org/country_of_vaccination": "CH",
+    ///        "http://schema.org/date_of_birth": "1953-07-21",
+    ///        "http://schema.org/family_name": "Bob",
+    ///        "http://schema.org/given_name": "Lammy",
+    ///        "http://schema.org/medicinal_product_code": "Pfizer/BioNTech Comirnaty EU/1/20/1528",
+    ///        "http://schema.org/number_of_doses": "2",
+    ///        "http://schema.org/total_number_of_doses": "2",
+    ///        "http://schema.org/vaccination_date": "2021-05-12"
+    ///    },
+    ///    "verified": true,
+    ///    "holder": "did:key:z6MkmGHPWdKjLqiTydLHvRRdHPNDdUDKDudjiF87RNFjM2fb"
+    ///}
     public class VerifiedVaccinationData
     {
         [JsonPropertyName("presentationType")]
