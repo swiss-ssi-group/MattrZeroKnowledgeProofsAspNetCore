@@ -3,14 +3,14 @@
 @{
 }
 
-<h1>Driver license verified</h1>
+<h1>Vaccination Data verified</h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm">
             <div>
                 <img src="~/pexels-artem-podrez-5878503.jpg" width="100" alt="Vaccine" />
                 <div>
-                    <b>Verified Driver Licence for:@Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.GivenName) @Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.FamilyName)</b>
+                    <b>Verified Vaccination Data for:@Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.GivenName) @Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.FamilyName)</b>
                     <hr />
                     <dl class="row">
                         <dt class="col-sm-4">Vaccinated in @Model.VerifiedVaccinationDataClaims.CountryOfVaccination on:</dt>

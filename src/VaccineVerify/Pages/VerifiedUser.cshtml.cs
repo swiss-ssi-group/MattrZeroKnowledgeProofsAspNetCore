@@ -5,11 +5,11 @@ namespace VaccineVerify.Pages
 {
     public class VerifiedUserModel : PageModel
     {
-        private readonly VaccineVerifyDbService _VaccineVerifyDbService;
+        private readonly VaccineVerifyDbService _vaccineVerifyDbService;
 
         public VerifiedUserModel(VaccineVerifyDbService VaccineVerifyDbService)
         {
-            _VaccineVerifyDbService = VaccineVerifyDbService;
+            _vaccineVerifyDbService = VaccineVerifyDbService;
         }
 
         public string ChallengeId { get; set; }
@@ -20,15 +20,15 @@ namespace VaccineVerify.Pages
             // user query param to get challenge id and display data
             if (challengeId != null)
             {
-                var verifiedDriverLicenseUser = await _VaccineVerifyDbService.GetVerifiedUser(challengeId);
+                var verifiedVaccinationDataUser = await _vaccineVerifyDbService.GetVerifiedUser(challengeId);
                 VerifiedVaccinationDataClaims = new VaccineVerifiedClaimsDto
                 {
-                    DateOfBirth = verifiedDriverLicenseUser.DateOfBirth,
-                    MedicinalProductCode = verifiedDriverLicenseUser.MedicinalProductCode,
-                    FamilyName = verifiedDriverLicenseUser.FamilyName,
-                    GivenName = verifiedDriverLicenseUser.GivenName,
-                    VaccinationDate = verifiedDriverLicenseUser.VaccinationDate,
-                    CountryOfVaccination = verifiedDriverLicenseUser.CountryOfVaccination
+                    DateOfBirth = verifiedVaccinationDataUser.DateOfBirth,
+                    MedicinalProductCode = verifiedVaccinationDataUser.MedicinalProductCode,
+                    FamilyName = verifiedVaccinationDataUser.FamilyName,
+                    GivenName = verifiedVaccinationDataUser.GivenName,
+                    VaccinationDate = verifiedVaccinationDataUser.VaccinationDate,
+                    CountryOfVaccination = verifiedVaccinationDataUser.CountryOfVaccination
                 };
             }
         }
