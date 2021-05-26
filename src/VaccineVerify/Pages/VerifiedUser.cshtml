@@ -10,30 +10,22 @@
             <div>
                 <img src="~/pexels-artem-podrez-5878503.jpg" width="100" alt="Vaccine" />
                 <div>
-                    <b>Verified Driver Licence for:@Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.FirstName) @Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.Name)</b>
+                    <b>Verified Driver Licence for:@Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.GivenName) @Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.FamilyName)</b>
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-4">Issued</dt>
+                        <dt class="col-sm-4">Vaccinated in @Model.VerifiedVaccinationDataClaims.CountryOfVaccination on:</dt>
                         <dd class="col-sm-8">
-                            @Model.VerifiedDriverLicenseClaims.LicenseIssuedAt
+                            @Model.VerifiedVaccinationDataClaims.VaccinationDate
                         </dd>
                         <dt class="col-sm-4">
-                            @Html.DisplayNameFor(model => model.VerifiedDriverLicenseClaims.Name)
+                            @Html.DisplayNameFor(model => model.VerifiedVaccinationDataClaims.MedicinalProductCode)
                         </dt>
                         <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.Name)
-                        </dd>
-                        <dt class="col-sm-4">First Name</dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.FirstName)
-                        </dd>
-                        <dt class="col-sm-4">License Type</dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.VerifiedDriverLicenseClaims.LicenseType)
+                            @Html.DisplayFor(model => model.VerifiedVaccinationDataClaims.MedicinalProductCode)
                         </dd>
                         <dt class="col-sm-4">Date of Birth</dt>
                         <dd class="col-sm-8">
-                            @Model.VerifiedDriverLicenseClaims.DateOfBirth
+                            @Model.VerifiedVaccinationDataClaims.DateOfBirth
                         </dd>
                     </dl>
                 </div>
