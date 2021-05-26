@@ -15,7 +15,7 @@ namespace VaccineVerify
             _vaccineVerifyVerifyMattrContext = vaccineVerifyVerifyMattrContext;
         }
 
-        public async Task<(string DidId, string TemplateId)> GetLastVaccinationDataPrsentationTemplate()
+        public async Task<(string DidId, string TemplateId)> GetLastVaccinationDataPresentationTemplate()
         {
             var driverLicenseTemplate = await _vaccineVerifyVerifyMattrContext
                 .VaccinationDataPresentationTemplates

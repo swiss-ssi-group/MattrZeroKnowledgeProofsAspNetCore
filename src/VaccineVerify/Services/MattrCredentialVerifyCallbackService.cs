@@ -67,20 +67,19 @@ namespace VaccineVerify
                 new AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
 
-            var template = await _vaccineVerifyDbService.GetLastVaccinationDataPrsentationTemplate();
-
-            // TODO this is null and the signing is not working
-            // Invoke the Presentation Request
-            var invokePresentationResponse = await InvokePresentationRequest(
-                client,
-                template.DidId,
-                template.TemplateId,
-                challenge,
-                callbackUrlFull);
+            var template = await _vaccineVerifyDbService.GetLastVaccinationDataPresentationTemplate();
 
             var didToVerify = await _mattrCreateDidService.GetDidOrCreate("did_for_verify");
             // Request DID from ledger
             V1_GetDidResponse did = await RequestDID(didToVerify.Did, client);
+
+            // Invoke the Presentation Request
+            var invokePresentationResponse = await InvokePresentationRequest(
+                client,
+                didToVerify.Did,
+                template.TemplateId,
+                challenge,
+                callbackUrlFull);
 
             // Sign and Encode the Presentation Request body
             var signAndEncodePresentationRequestBodyResponse = await SignAndEncodePresentationRequestBody(
