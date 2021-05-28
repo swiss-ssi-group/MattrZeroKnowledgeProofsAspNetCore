@@ -131,6 +131,8 @@ https://www.xtseminars.co.uk/post/introduction-to-the-future-of-identity-dids-vc
 
 https://medium.com/decentralized-identity/where-to-begin-with-oidc-and-siop-7dd186c89796
 
+https://www.evernym.com/blog/zero-knowledge-proofs/
+
 # Mattr.Global instructions 
 
 In order to obtain a Credential on the mobile wallet you will need to use the OIDC Bridge, so try following this tutorial.
