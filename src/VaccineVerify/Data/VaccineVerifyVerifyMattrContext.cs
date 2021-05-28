@@ -14,7 +14,7 @@ namespace VaccineVerify.Data
         public DbSet<VerifiedVaccinationsData> VerifiedVaccinationsData { get; set; }
 
         public DbSet<Did> Dids { get; set; }
-        
+
 
     }
 }

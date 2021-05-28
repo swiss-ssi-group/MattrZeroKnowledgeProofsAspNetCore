@@ -78,7 +78,7 @@ namespace VaccineCredentialsIssuer
                     IssuerDid = did.Did,
                     Name = "VaccinationCertificate7",
                     Context = new List<Uri> {
-                        new Uri( "https://schema.org"), 
+                        new Uri( "https://schema.org"),
                         new Uri( "https://www.w3.org/2018/credentials/v1")
                     },
                     Type = new List<string> { "VerifiableCredential" }

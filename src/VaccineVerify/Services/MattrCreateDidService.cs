@@ -35,7 +35,7 @@ namespace VaccineVerify.Services
         public async Task<V1_CreateDidResponse> GetDidOrCreate(string name)
         {
             var did = await _vaccineVerifyDbService.GetDid(name);
-            if(did != null)
+            if (did != null)
             {
                 var payload = JsonConvert.DeserializeObject<V1_CreateDidResponse>(did.DidData);
                 return payload;

@@ -70,7 +70,7 @@ namespace VaccineVerify
 
             var additionalPropertiesCredentialSubject = new Dictionary<string, object>();
             additionalPropertiesCredentialSubject.Add("credentialSubject", new VaccanationDataCredentialSubject
-            { 
+            {
                 Explicit = true
             });
 
