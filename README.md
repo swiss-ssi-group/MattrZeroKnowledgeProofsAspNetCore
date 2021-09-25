@@ -1,3 +1,5 @@
+[![.NET](https://github.com/swiss-ssi-group/MattrZeroKnowledgeProofsAspNetCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/swiss-ssi-group/MattrZeroKnowledgeProofsAspNetCore/actions/workflows/dotnet.yml)
+
 # MATTR Global ASP.NET Core
 
 ## Blogs
@@ -71,6 +73,8 @@
 ```
 
 ## History
+
+2021-09-25 Updated packages
 
 2021-05-09 Updated packages, code clean up, improved random
 
