@@ -75,6 +75,8 @@
 
 ## History
 
+2021-12-07 Updated MATTR verify API
+
 2021-12-04 Updated .NET 6
 
 2021-09-25 Updated packages
