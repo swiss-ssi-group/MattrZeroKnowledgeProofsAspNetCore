@@ -94,8 +94,10 @@ namespace VaccineVerify
                     {
                         Context = new List<object>{
                             "https://www.w3.org/2018/credentials/v1",
-                            "https://w3c-ccg.github.io/ldp-bbs2020/context/v1",
+                            "https://w3id.org/security/bbs/v1",
+                            "https://mattr.global/contexts/vc-extensions/v1",
                             "https://schema.org",
+                            "https://w3id.org/vc-revocation-list-2020/v1"
                         },
                         Type = "VerifiableCredential",
                         AdditionalProperties = additionalPropertiesCredentialSubject

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,6 +18,9 @@ namespace VaccineVerify.Pages
 
         [BindProperty]
         public string ChallengeId { get; set; }
+
+        [BindProperty]
+        public string Base64ChallengeId { get; set; }
 
         [BindProperty]
         public CreateVerifierDisplayQrCodeCallbackUrl CallbackUrlDto { get; set; }
@@ -51,12 +56,15 @@ namespace VaccineVerify.Pages
 
             var walletUrl = result.WalletUrl.Trim();
             ChallengeId = result.ChallengeId;
-            VerificationRedirectController.WalletUrls.Add(ChallengeId, walletUrl);
+            var valueBytes = Encoding.UTF8.GetBytes(ChallengeId);
+            Base64ChallengeId = Convert.ToBase64String(valueBytes);
+
+            VerificationRedirectController.WalletUrls.Add(Base64ChallengeId, walletUrl);
 
             // https://learn.mattr.global/tutorials/verify/using-callback/callback-e-to-e#redirect-urls
             //var qrCodeUrl = $"didcomm://{walletUrl}";
 
-            QrCodeUrl = $"didcomm://https://{HttpContext.Request.Host.Value}/VerificationRedirect/{ChallengeId}";
+            QrCodeUrl = $"didcomm://https://{HttpContext.Request.Host.Value}/VerificationRedirect/{Base64ChallengeId}";
             return Page();
         }
     }

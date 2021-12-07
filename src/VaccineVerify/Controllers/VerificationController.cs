@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text;
+using System;
 
 namespace VaccineVerify.Controllers
 {
@@ -43,11 +46,17 @@ namespace VaccineVerify.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> VerificationDataCallback([FromBody] VerifiedVaccinationData body)
+        public async Task<IActionResult> VerificationDataCallback()
         {
+            string content = await new System.IO.StreamReader(Request.Body).ReadToEndAsync();
+            var body = JsonSerializer.Deserialize<VerifiedVaccinationData>(content);
+
+            var valueBytes = Encoding.UTF8.GetBytes(body.ChallengeId);
+            var base64ChallengeId = Convert.ToBase64String(valueBytes);
+
             string connectionId;
             var found = MattrVerifiedSuccessHub.Challenges
-                .TryGetValue(body.ChallengeId, out connectionId);
+                .TryGetValue(base64ChallengeId, out connectionId);
 
             // test Signalr
             //await _hubContext.Clients.Client(connectionId).SendAsync("MattrCallbackSuccess", $"{body.ChallengeId}");
@@ -61,10 +70,10 @@ namespace VaccineVerify.Controllers
 
                 if (found)
                 {
-                    //$"/VerifiedUser?challengeid={body.ChallengeId}"
+                    //$"/VerifiedUser?base64ChallengeId={base64ChallengeId}"
                     await _hubContext.Clients
                         .Client(connectionId)
-                        .SendAsync("MattrCallbackSuccess", $"{body.ChallengeId}");
+                        .SendAsync("MattrCallbackSuccess", $"{base64ChallengeId}");
                 }
 
                 return Ok();
