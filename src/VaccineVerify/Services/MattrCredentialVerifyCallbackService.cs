@@ -22,7 +22,7 @@ namespace VaccineVerify
         /// <summary>
         /// TODO calculate this
         /// </summary>
-        private static double MATTR_EPOCH_EXPIRES_TIME_VERIFIY = 1638836401000;
+        private static double MATTR_EPOCH_EXPIRES_TIME_VERIFIY = 1699836401000;
 
         private readonly IHttpClientFactory _clientFactory;
         private readonly MattrTokenApiService _mattrTokenApiService;
