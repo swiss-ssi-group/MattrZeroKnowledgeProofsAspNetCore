@@ -1,6 +1,6 @@
 [![.NET](https://github.com/swiss-ssi-group/MattrZeroKnowledgeProofsAspNetCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/swiss-ssi-group/MattrZeroKnowledgeProofsAspNetCore/actions/workflows/dotnet.yml)
 
-# MATTR Global ASP.NET Core
+# MATTR  ASP.NET Core Zero Knowledge Proof BBS+
 
 ## Blogs
 
