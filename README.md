@@ -9,6 +9,7 @@
 - [Present and Verify Verifiable Credentials in ASP.NET Core using Decentralized Identities and MATTR](https://damienbod.com/2021/05/10/present-and-verify-verifiable-credentials-in-asp-net-core-using-decentralized-identities-and-mattr/)
 - [Verify vaccination data using Zero Knowledge Proofs with ASP.NET Core and MATTR](https://damienbod.com/2021/05/31/verify-vaccination-data-using-zero-knowledge-proofs-with-asp-net-core-and-mattr/)
 - [Challenges to Self Sovereign Identity](https://damienbod.com/2021/10/11/challenges-to-self-sovereign-identity/)
+- [Implement Compound Proof BBS+ verifiable credentials using ASP.NET Core and MATTR](https://damienbod.com/2021/12/13/implement-compound-proof-bbs-verifiable-credentials-using-asp-net-core-and-mattr/https://damienbod.com/2021/12/13/implement-compound-proof-bbs-verifiable-credentials-using-asp-net-core-and-mattr/)
 
 ## Test run the applications
 
